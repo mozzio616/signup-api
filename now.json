@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "onetime",
+  "name": "signup-api",
   "builds": [
     { "src": "**/*.js", "use": "@now/node" },
     { "src": "**/*.json", "use": "@now/static" },
