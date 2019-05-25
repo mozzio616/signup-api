@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  description: Sign up API using ont-time token
+  version: 1.0.0
+  title: Sign Up API
+tags:
+  - name: token
+paths:
+  /token/{email}:
+    get:
+      tags:
+        - token
+      description: Verify one-time token.
+      parameters:
+        - name: email
+          in: path
+          description: Email address
+          required: true
+          type: string
+        - name: token
+          in: query
+          description: Ont-time token
+          required: true
+          type: string
+      responses:
+        200:
+          description: Verified
+          schema:
+            $ref: "#/definitions/response"
+        400:
+          description: Invalid token
+          schema:
+            $ref: "#/definitions/response"
+        404:
+          description: Unknown email
+          schema:
+            $ref: "#/definitions/response"
+    post:
+      description: Generate and send one-time token.
+      tags:
+        - token
+      parameters:
+        - name: email
+          in: path
+          description: Email address
+          required: true
+          type: string
+        - name: channel
+          in: body
+          description: Slack channel (option)
+          required: false
+          type: object
+          properties:
+            channel:
+              type: string
+      responses:
+        201:
+          description: One-time token sent to email or slack.
+          schema:
+            $ref: "#/definitions/response"
+        400:
+          description: Missing required params.
+          schema:
+            $ref: "#/definitions/response"
+definitions:
+  response:
+    type: object
+    properties:
+      message:
+        type: string

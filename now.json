@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "onetime",
+  "builds": [
+    { "src": "**/*.js", "use": "@now/node" },
+    { "src": "**/*.json", "use": "@now/static" },
+    { "src": "**/*.yaml", "use": "@now/static" }
+  ],
+   "routes": [
+    { "src": "(.*)", "dest": "/index.js" }
+  ],
+  "env": {
+    "SG_API_KEY": "@sg-api-key",
+    "WEBHOOK_URL": "@webhook-url"
+  }
+}
